@@ -1,0 +1,83 @@
+sensor.home_temperature:
+  friendly_name: Living Room
+
+sensor.julie_and_sheil_temperature:
+  friendly_name: Julie & Sheil's Room
+
+sensor.bens_room_temperature:
+  friendly_name: Ben's Room
+
+sensor.guest_room_temperature:
+  friendly_name: Guest Room
+
+sensor.home_humidity:
+  friendly_name: Humidity
+
+sensor.ecobee_status_sensor:
+  friendly_name: Current Status
+
+camera.ffmpeg:
+  friendly_name: TV Room
+
+camera.ffmpeg_2:
+  friendly_name: Ben's Room
+
+script.sonos_jazz:
+  icon: mdi:music-note
+
+script.apple_tv_up:
+  icon: mdi:arrow-up-bold
+
+script.apple_tv_down:
+  icon: mdi:arrow-down-bold
+
+script.apple_tv_left:
+  icon: mdi:arrow-left-bold
+
+script.apple_tv_right:
+  icon: mdi:arrow-right-bold
+
+script.apple_tv_select:
+  icon: mdi:circle
+
+script.apple_tv_menu:
+  icon: mdi:menu
+
+script.apple_tv_home:
+  icon: mdi:television
+
+script.soundbar_volume_up:
+  icon: mdi:volume-plus
+
+script.soundbar_volume_down:
+  icon: mdi:volume-minus
+
+script.soundbar_volume_mute:
+  icon: mdi:volume-off
+
+input_boolean.living_room_pillar_lights:
+  icon: mdi:floor-lamp
+
+switch.bens_air_purifer:
+  icon: mdi:fan
+
+input_boolean.bens_night_light:
+  icon: mdi:lightbulb-outline
+
+sensor.allergy_index_forecasted_average_2:
+  friendly_name: Allergy Index
+  icon: mdi:flower
+
+sensor.pws_temp_f:
+  friendly_name: Current Temp
+sensor.pws_temp_high_1d_f:
+  friendly_name: High Temp Today
+sensor.pws_temp_low_1d_f:
+  friendly_name: Low Temp Today
+
+sensor.rest_sensor:
+  friendly_name: Available Bikes
+  icon: mdi:bike
+
+script.bedroom_tv_on_roku_nbc:
+  icon: mdi:television

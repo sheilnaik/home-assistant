@@ -102,3 +102,19 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+.storage/core.config_entries
+.DS_Store
+.HA_VERSION
+.uuid
+._.DS_Store
+._harmony_harmony.conf
+.ios.conf
+ecobee.conf
+entity_registry.yaml
+harmony_harmony.conf
+home-assistant_v2.db
+known_devices.yaml
+secrets.yaml
+.cloud/production_auth.json
+python_scripts/._roku_open_nbc.py
+tts/c22b5f9178342609428d6f51b2c5af4c0bde6a42_en_-_google.mp3

@@ -1,0 +1,79 @@
+- alias: turn on living room pillar lights
+  trigger: 
+    - platform: state
+      entity_id: input_boolean.living_room_pillar_lights
+      to: 'on'
+  action:
+    - service: ifttt.trigger
+      data: {"event":"living_room_lights_on", "value1":"Living Room Lights", "value2":"on"}
+- alias: turn off living room pillar lights
+  trigger: 
+    - platform: state
+      entity_id: input_boolean.living_room_pillar_lights
+      to: 'off'
+  action:
+    - service: ifttt.trigger
+      data: {"event":"living_room_lights_off", "value1":"Living Room Lights", "value2": "off"}
+
+- alias: turn on ben's night light
+  trigger: 
+    - platform: state
+      entity_id: input_boolean.bens_night_light
+      to: 'on'
+  action:
+    - service: ifttt.trigger
+      data: {"event":"bens_night_light_on", "value1":"Ben's Night Light", "value2":"on"}
+- alias: turn on ben's night light
+  trigger: 
+    - platform: state
+      entity_id: input_boolean.bens_night_light
+      to: 'off'
+  action:
+    - service: ifttt.trigger
+      data: {"event":"bens_night_light_off", "value1":"Ben's Night Light", "value2": "off"}
+
+
+
+
+
+- alias: turn on living room pillar lights at sunset
+  trigger:
+    platform: sun
+    event: sunset
+  action:
+    - service: ifttt.trigger
+      data: {"event":"living_room_lights_on", "value1":"Living Room Lights", "value2":"on"}
+    - service: input_boolean.turn_on
+      data:
+        entity_id: input_boolean.living_room_pillar_lights
+- alias: turn off living room pillar lights at 11pm
+  trigger:
+    - platform: time
+      at: '23:00:00'
+  action:
+    - service: ifttt.trigger
+      data: {"event":"living_room_lights_off", "value1":"Living Room Lights", "value2": "off"}
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.living_room_pillar_lights
+
+
+- alias: Ben's Air Purifier On
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.allergy_index_forecasted_average_2
+    above: 7.3
+  action:
+    service: switch.turn_on
+    data_template:
+      entity_id: "switch.bens_air_purifer"
+
+- alias: Ben's Air Purifier Off
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.allergy_index_forecasted_average_2
+    below: 7.3
+  action:
+    service: switch.turn_off
+    data_template:
+      entity_id: "switch.bens_air_purifer"

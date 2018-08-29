@@ -1,0 +1,165 @@
+homeassistant:
+  name: Home
+  latitude: 40.517
+  longitude: -74.868
+  elevation: 0
+  unit_system: imperial
+  time_zone: America/New_York
+  customize: !include customize.yaml
+
+# Enables the frontend
+frontend:
+
+# Enables configuration UI
+config:
+
+http:
+  # Secrets are defined in the file secrets.yaml
+  api_password: !secret http_password
+  # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+  # base_url: example.duckdns.org:8123
+
+updater:
+
+# Discover some devices automatically
+# discovery:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time
+history:
+
+# View all events in a logbook
+logbook:
+
+
+# Track the sun
+sun:
+
+
+sensor:
+  - platform: wunderground
+    api_key: !secret wunderground_api_key
+    monitored_conditions:
+      - temp_f
+      - feelslike_f
+      - temp_high_1d_f
+      - temp_low_1d_f
+
+  - platform: darksky
+    api_key: !secret dark_sky_api_key
+    monitored_conditions:
+      - temperature
+      - apparent_temperature
+      - nearest_storm_distance
+      - cloud_cover
+
+  - platform: pollen
+    zip_code: "08833"
+    monitored_conditions:
+      - allergy_average_forecasted
+      - allergy_average_historical
+      - allergy_index_today
+      - allergy_index_tomorrow
+
+  - platform: rest
+    resource: https://api.nextbike.net/maps/nextbike-live.json?city=258
+    method: GET
+    value_template: "{{ value_json['countries'][1]['cities'][0]['places'][4]['bikes'] }}"
+
+
+# Text to speech
+tts:
+  - platform: google
+
+# Cloud
+cloud:
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+
+
+logger:
+  default: info
+
+
+api:
+
+
+ios:
+
+
+device_tracker:
+  - platform: netgear
+    host: 192.168.1.1
+    username: !secret netgear_username
+    password: !secret netgear_password
+    port: 80
+
+
+ifttt:
+  key: !secret ifttt_key
+
+
+mqtt:
+  broker: 192.168.1.4
+  port: 1883
+  client_id: home-assistant-1
+  username: !secret mqtt_user
+  password: !secret mqtt_password
+
+
+camera:
+  - platform: ffmpeg
+    input: !secret bens_room_camera_url
+  - platform: ffmpeg
+    input: !secret tv_room_camera_url
+
+
+ecobee:
+  api_key: !secret ecobee_api_key
+
+
+media_player:
+  - platform: vizio
+    host: 192.168.1.17
+    access_token: !secret vizio_access_token
+    name: Vizio Soundbar
+
+
+# apple_tv:
+#   - host: 192.168.1.6
+#     login_id: !secret apple_tv_login_id
+#     credentials: !secret apple_tv_credentials
+#     name: Apple TV
+
+
+input_boolean:
+  living_room_pillar_lights:
+    name: Living Room Pillar Lights
+    initial: off
+  bens_night_light:
+    name: Ben's Night Light
+    initial: off
+
+switch:
+  platform: mqtt
+  name: "Ben's Air Purifer"
+  command_topic: "cmnd/sonoff1/power"
+  state_topic: "stat/sonoff1/POWER"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true
+
+
+shell_command:
+  roku_open_nbc: python3 /home/homeassistant/.homeassistant/python_scripts/roku_open_nbc.py
+
+
+remote:
+  - platform: harmony
+    name: Harmony
+    host: 192.168.1.27

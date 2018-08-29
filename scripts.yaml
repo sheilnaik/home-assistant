@@ -1,0 +1,141 @@
+sonos_jazz:
+  alias: "Coffee Table Jazz"
+  sequence:
+    - service: media_player.sonos_snapshot
+      entity_id:
+        - media_player.kitchen
+        - media_player.living_room
+        - media_player.bedroom
+        - media_player.tv_room_2
+    - delay: '00:00:03'
+    - service: media_player.sonos_unjoin
+      entity_id:
+        - media_player.kitchen
+        - media_player.living_room
+        - media_player.bedroom
+        - media_player.tv_room_2
+    - delay: '00:00:03'
+    - service: media_player.sonos_join
+      data:
+        master: media_player.kitchen
+      entity_id:
+        - media_player.living_room
+        - media_player.bedroom
+        - media_player.tv_room_2
+    - delay: '00:00:03'
+    - service: media_player.volume_set
+      data:
+        volume_level: 0.35
+      entity_id:
+        - media_player.kitchen
+        - media_player.master_bedroom
+        - media_player.living_room
+        - media_player.tv_room_2
+    - delay: '00:00:03'
+    - service: media_player.select_source
+      data:
+        entity_id: media_player.kitchen
+        source: 'Coffee Table Jazz'
+
+apple_tv_up:
+  alias: Up
+  sequence:
+    - service: remote.send_command
+      data:
+        entity_id: remote.apple_tv
+        command:
+          - up
+
+apple_tv_down:
+  alias: Down
+  sequence:
+    - service: remote.send_command
+      data:
+        entity_id: remote.apple_tv
+        command:
+          - down
+
+apple_tv_left:
+  alias: Left
+  sequence:
+    - service: remote.send_command
+      data:
+        entity_id: remote.apple_tv
+        command:
+          - left
+
+apple_tv_right:
+  alias: Right
+  sequence:
+    - service: remote.send_command
+      data:
+        entity_id: remote.apple_tv
+        command:
+          - right
+
+apple_tv_select:
+  alias: Select
+  sequence:
+    - service: remote.send_command
+      data:
+        entity_id: remote.apple_tv
+        command:
+          - select
+
+apple_tv_menu:
+  alias: Menu
+  sequence:
+    - service: remote.send_command
+      data:
+        entity_id: remote.apple_tv
+        command:
+          - menu
+
+apple_tv_home:
+  alias: Home
+  sequence:
+    - service: remote.send_command
+      data:
+        entity_id: remote.apple_tv
+        command:
+          - top_menu
+
+soundbar_volume_up:
+  alias: Volume Up
+  sequence:
+    - service: media_player.volume_up
+      data:
+        entity_id: media_player.vizio_smartcast
+
+soundbar_volume_down:
+  alias: Volume Down
+  sequence:
+    - service: media_player.volume_down
+      data:
+        entity_id: media_player.vizio_smartcast
+
+soundbar_volume_mute:
+  alias: Volume Mute
+  sequence:
+    - service: media_player.volume_mute
+      data:
+        entity_id: media_player.vizio_smartcast
+
+bedroom_tv_on:
+  alias: Bedroom TV On
+  sequence:
+    - service: remote.send_command
+      data:
+        entity_id: remote.harmony
+        device: "56850730"
+        command: "PowerOn"
+
+bedroom_tv_on_roku_nbc:
+  alias: TV and NBC On
+  sequence:
+    - service: remote.send_command
+      data:
+        entity_id: remote.harmony
+        device: "56850730"
+        command: "PowerOn"
+    - service: shell_command.roku_open_nbc

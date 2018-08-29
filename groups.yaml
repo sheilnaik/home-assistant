@@ -1,0 +1,106 @@
+#################################################################
+## VIEWS
+#################################################################
+
+default_view:
+  name: Home
+# general:
+#   name: General
+  view: yes
+  entities:
+    - sensor.pws_temp_f
+    - sensor.pws_feelslike_f
+    - sensor.pws_temp_high_1d_f
+    - sensor.pws_temp_low_1d_f
+    - sensor.allergy_index_forecasted_average_2
+    - sensor.rest_sensor
+    - group.switches
+    - script.bedroom_tv_on_roku_nbc
+
+apple_tv:
+  name: Apple TV
+  view: yes
+  entities:
+    - media_player.tv_room
+    - group.apple_tv_remote
+
+sonos:
+  name: Sonos
+  view: yes
+  entities:
+    - media_player.kitchen
+    - media_player.tv_room_2
+    - media_player.living_room
+    - media_player.bedroom
+    - group.sonos_playlists
+
+thermostat:
+  name: Thermostat
+  view: yes
+  entities:
+    - climate.home
+    - group.thermostat_current_temps
+
+cameras:
+  name: Cameras
+  view: yes
+  entities:
+    - camera.ffmpeg
+    - camera.ffmpeg_2
+
+
+#################################################################
+## SWITCHES
+#################################################################
+
+switches:
+  name: Switches
+  control: hidden
+  entities:
+    - input_boolean.living_room_pillar_lights
+    - switch.bens_air_purifer
+    - input_boolean.bens_night_light
+
+
+#################################################################
+## APPLE TV
+#################################################################
+
+apple_tv_remote:
+  name: Apple TV
+  control: hidden
+  entities:
+    - script.soundbar_volume_up
+    - script.soundbar_volume_down
+    - script.soundbar_volume_mute
+    - script.apple_tv_up
+    - script.apple_tv_down
+    - script.apple_tv_left
+    - script.apple_tv_right
+    - script.apple_tv_select
+    - script.apple_tv_menu
+    - script.apple_tv_home
+
+
+#################################################################
+## SONOS
+#################################################################
+
+sonos_playlists:
+  name: Sonos Playlists
+  entities:
+    - script.sonos_jazz
+
+
+#################################################################
+## THERMOSTAT
+#################################################################
+
+thermostat_current_temps:
+  name: Current Temperatures & Humidity
+  entities:
+    - sensor.home_temperature
+    - sensor.julie_and_sheil_temperature
+    - sensor.bens_room_temperature
+    - sensor.guest_room_temperature
+    - sensor.home_humidity
